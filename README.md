@@ -1,10 +1,14 @@
 # Don't Touch Twice
 
-A 2D path puzzle in **Godot 4 + GDScript**, using the Compatibility renderer. Every tile you enter disappears. Your starting tile counts, too.
+A strategic 2D puzzle game built with **Godot 4** and **GDScript** where every tile disappears after you step on it—including your starting tile. Plan your path carefully and reach the goal without revisiting a tile.
 
 ## Play
 
-1. Download the standard edition of [Godot 4](https://godotengine.org/download/) (tested with 4.5.1; no .NET required).
+🎮 **Play in your browser:** https://idharanithota.github.io/dont-touch-twice/
+
+Or run locally:
+
+1. Download the standard edition of Godot 4 (tested with 4.5.1; no .NET required).
 2. In Godot's project manager, select **Import** and choose `project.godot`.
 3. Open the project and press **F5**.
 
@@ -70,6 +74,10 @@ godot --headless --path . --script tests/test_ui.gd
 python3 tools/test_audit.py
 python3 tools/build_expert.py
 ```
+
+## Browser Version
+
+The game is exported to HTML5/WebAssembly and can be played directly in a web browser through GitHub Pages. No installation is required.
 
 On macOS, substitute `/path/to/Godot.app/Contents/MacOS/Godot` for `godot`. Run the UI test without `--headless` on macOS to capture screenshots in `/private/tmp/dtt-*.png`.
 
