@@ -1,0 +1,30 @@
+extends RefCounted
+
+# S = start, F = finish, . = floor, # = wall. Every level has a verified route.
+const DATA = [
+	{"name": "Small steps", "hint": "One step forward. No steps back.", "map": ["S...", "....", "....", "...F"]},
+	{"name": "The detour", "hint": "A wall is just an invitation to go around.", "map": ["S#...", ".#.#.", "...#.", ".###.", "....F"]},
+	{"name": "Switchback", "hint": "Follow the bends. Leave the past behind.", "map": ["S....", "####.", ".....", ".####", "....F"]},
+	{"name": "Crossroads", "hint": "Look ahead before you choose a turn.", "map": ["..S..", ".#.#.", ".....", ".#.#.", "..F.."]},
+	{"name": "Long way home", "hint": "Sometimes the finish is closer than the path.", "map": ["S#..F", ".#.#.", ".#.#.", ".#.#.", "...#."]},
+	{"name": "Side streets", "hint": "Keep an exit in sight.", "map": ["S.....", ".##.#.", "..#.#.", "#.#...", "#...#.", "..#..F"]},
+	{"name": "Spiral thoughts", "hint": "Take the scenic route inward.", "map": ["S.....", "#####.", "....#.", ".#F.#.", ".####.", "......"]},
+	{"name": "Stepping stones", "hint": "Every choice leaves a little less ground.", "map": ["S..#..", ".#...#", "...#..", "#...#.", "..#...", "#...#F"]},
+	{"name": "Almost there", "hint": "The shortest route is not always obvious.", "map": ["S.....", ".####.", "....#.", ".##.#.", "..#...", "F.####"]},
+	{"name": "Leave no return", "hint": "One last journey. Make every step count.", "map": ["S......", ".#####.", ".....#.", ".###.#.", ".#...#.", ".#.###.", "...#F.."]},
+	{"name": "Under Lock", "hint": "Pick up the gold key. Spend it to open the door.", "map": ["S..###F", ".#.#.#D", ".K...#.", "###.##.", "......."], "solution": "DDRRRDDRRRUUUU", "tier": "adventure"} ,
+	{"name": "Crystal Debt", "hint": "Collect every cyan crystal to unlock the flag.", "map": ["S...F", ".###.", "G...G", ".###.", "....."], "solution": "DDRRRRUU", "tier": "adventure"} ,
+	{"name": "Folded Space", "hint": "Violet rings are paired. Both ends vanish after use.", "map": ["S..####", "##1####", "#######", "###1..F", "#######"], "solution": "RRDRRR", "tier": "adventure"} ,
+	{"name": "Cold Feet", "hint": "Ice slides you forward until solid ground or a block.", "map": ["SIII.##", "####.##", "####I##", "####I##", "F....##"], "solution": "RDDLLLL", "tier": "adventure"} ,
+	{"name": "Pressure Test", "hint": "Key, crystals, portal, ice. You have 45 seconds.", "time_limit": 45.0, "map": ["S.KD1##", "#######", "1II.G##", "####.##", "####G.F"], "solution": "RRRRRRDDRR", "tier": "adventure"} ,
+	{"name": "Loose Ends", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["......D..#", ".....##..#", "####F##.##", "##D...#.##", "##.##.#.##", "##....#.##", "####..#...", "......G..K", ".#######..", "K.....S#.."], "require_all": true, "tier": "expert"},
+	{"name": "False Hope", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["##K....##", ".......G.", ".##.#.##.", ".#..#..#.", ".#D#..F#.", "...#..##.", "####SK...", "####....D", "####...##"], "require_all": true, "tier": "expert"},
+	{"name": "The Divide", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["#####D..", "#####.#.", "##....S.", "D...##..", "..F.....", "..##K##.", ".....##.", "..G....K"], "require_all": true, "tier": "expert"},
+	{"name": "Keyhole", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["....####S", ".##...##.", ".....K...", "D.##K####", ".G##.....", "..##..D..", "..F..##..", "###..####", "###..####"], "require_all": true, "tier": "expert"},
+	{"name": "Crossed Wires", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["##....G##", ".K.S...##", ".##..##..", ".##...D..", ".##......", ".##.K##F#", ".###....#", "...#.#..#", "##D..####"], "require_all": true, "tier": "expert"},
+	{"name": "Afterimage", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["...#.D.##", ".#.#.....", ".#....S..", "K####..#.", "....#..#K", "..G.#..F.", ".##D..#..", "....#.#.#", "#####...#"], "require_all": true, "tier": "expert"},
+	{"name": "Last Exit", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["##......##", "##G...#.##", "#.F#..#D..", "#.##K##...", "..##....##", ".###..####", ".###..K.S.", "..........", "###D##.###", "###....###"], "require_all": true, "tier": "expert"},
+	{"name": "No Mercy", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["###F.####", "##.....D.", "...##..#.", "D..S...#.", ".#...#.G.", ".#.K.#...", "....K..##", "#.##.####", "#....####"], "require_all": true, "tier": "expert"},
+	{"name": "Blackout", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["...#..S##", ".#.#...K.", ".#..#....", "D##.#..##", "..#......", "#.#....G.", "#.#K.##.D", "..F.##...", "....##..."], "require_all": true, "tier": "expert"},
+	{"name": "Singularity", "hint": "Every tile once. Keys open doors. Flag must be last.", "map": ["####......", "#..#....#.", "#....##D#.", "#..F....#.", "#####..K#K", "#####.#...", "D.S...#..#", "..###....#", "......##.#", "......G..#"], "require_all": true, "tier": "expert"},
+]
